@@ -1,0 +1,8 @@
+{
+  "functions": {
+    "app/**": {
+      "runtime": "@vercel/node@20",
+      "regions": ["sin1"]
+    }
+  }
+}
