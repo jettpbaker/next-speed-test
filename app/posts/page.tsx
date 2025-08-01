@@ -1,6 +1,9 @@
 import Link from 'next/link'
 import { getPosts, createPostAction } from '@/app/actions'
 
+export const revalidate = 30
+export const dynamic = 'force-dynamic'
+
 export default async function Post() {
   const posts = await getPosts()
 
