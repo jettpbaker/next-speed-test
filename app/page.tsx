@@ -98,7 +98,7 @@ export default function Home() {
           />
           Go to nextjs.org →
         </a>
-        <Link href="/post">Post</Link>
+        <Link href="/posts">Posts</Link>
       </footer>
     </div>
   )
