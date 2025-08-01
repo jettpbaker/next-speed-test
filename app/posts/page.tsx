@@ -1,20 +1,5 @@
 import Link from 'next/link'
-import { getPosts, createPost } from '@/app/actions'
-import { redirect } from 'next/navigation'
-
-async function handleCreatePost(formData: FormData) {
-  'use server'
-
-  const title = formData.get('title') as string
-  const content = formData.get('content') as string
-
-  if (!title || !content) {
-    return
-  }
-
-  await createPost(title, content)
-  redirect('/posts')
-}
+import { getPosts, createPostAction } from '@/app/actions'
 
 export default async function Post() {
   const posts = await getPosts()
@@ -55,7 +40,7 @@ export default async function Post() {
         {/* Create Post Form */}
         <section className="border-t pt-8">
           <h2 className="text-xl font-semibold mb-4">Create New Post</h2>
-          <form action={handleCreatePost} className="space-y-4">
+          <form action={createPostAction} className="space-y-4">
             <div>
               <label htmlFor="title" className="block text-sm font-medium mb-1">
                 Title
