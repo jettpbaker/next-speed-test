@@ -13,13 +13,18 @@ export async function getPosts() {
 }
 
 export async function createPostAction(formData: FormData): Promise<void> {
+  console.time('createPost')
   const title = formData.get('title') as string
   const content = formData.get('content') as string
 
-  if (!title || !content) {
-    return
-  }
+  if (!title || !content) return
 
+  console.time('database')
   await createPostQuery(title, content)
-  revalidatePath('/posts') // Single revalidation point
+  console.timeEnd('database')
+
+  console.time('revalidate')
+  revalidatePath('/posts')
+  console.timeEnd('revalidate')
+  console.timeEnd('createPost')
 }
